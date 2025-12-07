@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trading System - Login</title>
+    <link rel="stylesheet" href="styles/common.css">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <div class="logo">
+            <h1>AI Trading System</h1>
+            <p>Secure PIN Access Required</p>
+        </div>
+
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pin" >6-Digit PIN</label>
+                <div class="pin-inputs">
+                    <input type="password" maxlength="1" pattern="[0-9]" inputmode="numeric" required>
+                    <input type="password" maxlength="1" pattern="[0-9]" inputmode="numeric" required>
+                    <input type="password" maxlength="1" pattern="[0-9]" inputmode="numeric" required>
+                    <input type="password" maxlength="1" pattern="[0-9]" inputmode="numeric" required>
+                    <input type="password" maxlength="1" pattern="[0-9]" inputmode="numeric" required>
+                    <input type="password" maxlength="1" pattern="[0-9]" inputmode="numeric" required>
+                </div>
+            </div>
+
+            <button type="submit" class="login-button" id="loginButton">Access Dashboard</button>
+
+            <div class="error-message" id="errorMessage">
+                Invalid PIN. Please try again.
+            </div>
+
+            <div class="attempts-warning" id="attemptsWarning">
+                Warning: 2 attempts remaining
+            </div>
+
+            <div class="rate-limit-message" id="rateLimitMessage">
+                Too many failed attempts. Please wait 5 minutes.
+            </div>
+        </form>
+
+        <div class="security-info">
+            <strong>Security Notice:</strong><br>
+            • 6-digit PIN required<br>
+            • Rate limiting enabled<br>
+            • Auto-refresh: 30 seconds<br>
+            • Session timeout: 30 minutes
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>

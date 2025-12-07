@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Trading Dashboard</title>
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/lightweight-charts@3.8.0/dist/lightweight-charts.standalone.production.js"></script>
+</head>
+<body class="dashboard-body">
+    <div class="dashboard-header">
+        <div class="header-left">
+            <h1>AI Trading Dashboard</h1>
+            <div class="refresh-indicator" id="refreshIndicator">
+                Last refresh: Loading...
+            </div>
+        </div>
+        <div class="user-info">
+            <span>Welcome, <span id="usernameDisplay">User</span></span>
+            <span id="sessionTimer">Session: 30m 00s</span>
+            <button class="logout-btn" id="logoutBtn">Logout</button>
+        </div>
+    </div>
+
+    <div class="dashboard">
+        <div class="main-content">
+            <div class="chart-container">
+                <div class="chart-title">Price Chart with Technical Indicators</div>
+                <div id="tradingChart"></div>
+                
+                <div class="indicators">
+                    <div class="indicator-card">
+                        <div class="indicator-name">RSI</div>
+                        <div class="indicator-value">52.50</div>
+                    </div>
+                    <div class="indicator-card">
+                        <div class="indicator-name">MACD</div>
+                        <div class="indicator-value negative">-0.0023</div>
+                    </div>
+                    <div class="indicator-card">
+                        <div class="indicator-name">EMA 9</div>
+                        <div class="indicator-value">$3,5621</div>
+                    </div>
+                    <div class="indicator-card">
+                        <div class="indicator-name">EMA 21</div>
+                        <div class="indicator-value">$3,5589</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-title">AI Analysis & Key Observations</div>
+                <div class="ai-analysis">
+                    <p><strong>Key Observations</strong></p>
+                    <ul style="margin: 10px 0 10px 20px; font-size: 14px;">
+                        <li>RSI is neutral at 52.50, indicating no strong momentum</li>
+                        <li>MACD is slightly negative, suggesting weak bearish momentum</li>
+                        <li>EMA 9 is slightly above EMA 21, indicating potential short-term bullish crossover</li>
+                        <li>Volume is relatively low, indicating lack of strong buying or selling pressure</li>
+                    </ul>
+                    
+                    <p><strong>Risk Factors</strong></p>
+                    <ul style="margin: 10px 0 10px 20px; font-size: 14px;">
+                        <li>Low volume may lead to increased volatility</li>
+                        <li>MACD is negative, which could indicate potential downside risk</li>
+                    </ul>
+                    
+                    <p><strong>AI Analysis</strong></p>
+                    <p style="margin: 10px 0; font-size: 14px;" id="aiAnalysisText">
+                        The market sentiment is currently neutral with no strong indicators of a bullish or bearish trend. 
+                        The RSI is in the middle range, and the MACD is slightly negative, suggesting weak bearish momentum. 
+                        However, the EMA 9 is slightly above the EMA 21, indicating a potential short-term bullish crossover. 
+                        Given the low volume, there is a risk of increased volatility. It is advisable to hold the position 
+                        and wait for clearer signals before making a move.
+                    </p>
+                    
+                    <div class="signal-strength">
+                        <span>Signal Strength:</span>
+                        <div class="strength-bar">
+                            <div class="strength-fill"></div>
+                        </div>
+                        <span>68%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="card">
+                <div class="card-title">RL Bot Status</div>
+                <div class="rl-status">
+                    <div class="status-badge">RUNNING</div>
+                    <div style="font-size: 14px; margin: 10px 0;">
+                        Status: PDL<br>
+                        Original Signal: 883173<br>
+                        Current Signal: 3.5651
+                    </div>
+                    <div class="position-info">
+                        <div class="position-item">
+                            <div style="font-size: 12px; color: #888;">Side</div>
+                            <div style="font-weight: bold; color: #00ff88;">LONG</div>
+                        </div>
+                        <div class="position-item">
+                            <div style="font-size: 12px; color: #888;">Size</div>
+                            <div style="font-weight: bold;">70.8</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Recent RL Decisions</div>
+                <table class="decisions-table">
+                    <thead>
+                        <tr>
+                            <th>TIME</th>
+                            <th>ORIGINAL</th>
+                            <th>RL ACTION</th>
+                            <th>FINAL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01:31:18 PM</td>
+                            <td>HOLD</td>
+                            <td>Safety first</td>
+                            <td>HOLD</td>
+                        </tr>
+                        <tr>
+                            <td>01:30:52 PM</td>
+                            <td>HOLD</td>
+                            <td>Safety first</td>
+                            <td>HOLD</td>
+                        </tr>
+                        <tr>
+                            <td>01:30:52 PM</td>
+                            <td>HOLD</td>
+                            <td>Safety first</td>
+                            <td>HOLD</td>
+                        </tr>
+                        <tr>
+                            <td>01:29:36 PM</td>
+                            <td>HOLD</td>
+                            <td>Safety first</td>
+                            <td>HOLD</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="card-title">Market Context</div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 14px;">
+                    <div>
+                        <div style="color: #888;">BTC Price</div>
+                        <div style="font-weight: bold;">$122.8K <span class="positive">+2.00%</span></div>
+                    </div>
+                    <div>
+                        <div style="color: #888;">ETF Price</div>
+                        <div style="font-weight: bold;">$4.5K <span class="positive">+0.53%</span></div>
+                    </div>
+                    <div>
+                        <div style="color: #888;">BTC Dominance</div>
+                        <div style="font-weight: bold;">56.9%</div>
+                    </div>
+                    <div>
+                        <div style="color: #888;">Fear & Greed</div>
+                        <div style="font-weight: bold;">71</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card market-news">
+                <div class="card-title">Market News</div>
+                <div class="news-item">
+                    <div class="news-title">Dogecoin Has Made It to Wall Street</div>
+                    <div class="news-source">Gamesh.com - invalid Date</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">Fed Scrutinizing Potential Insider Trading in Major Crypto Deals</div>
+                    <div class="news-source">Gamesh.com - invalid Date</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">The Gaelic Asset Class</div>
+                    <div class="news-source">Dair.org - invalid Date</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            Last updated: <span id="lastUpdatedTime"></span> | AI Trading System v2.1
+        </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/chart.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
